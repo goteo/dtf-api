@@ -1,14 +1,14 @@
 api_platform:
-    title: The v4 API
+    title: The Goteo v4 API
     version: 4.0.0
     show_webby: false
     collection:
         order: "DESC"
     openapi:
         contact:
-            name: Fundación Platoniq
-            url: http://platoniq.net/contact/
-            email: contacto@platoniq.net
+            name: Democratic Tech Fund
+            url: https://democratictech.fund/contact/
+            email:     democratictech@freeknowledge.eu
         termsOfService:
         license:
             name: AGPL
