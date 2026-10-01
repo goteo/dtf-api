@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Dto;
+namespace App\Dto\User;
 
+use App\Entity\User\User;
 use App\Entity\User\UserType;
+use App\Validator\NotExisting;
 use Symfony\Component\Validator\Constraints as Assert;
 
 final class UserSignupDto
@@ -12,10 +14,11 @@ final class UserSignupDto
      */
     #[Assert\NotBlank()]
     #[Assert\Email()]
+    #[NotExisting(User::class, 'email')]
     public string $email;
 
     /**
-     * The auth password for the new User. Plaintext string,
+     * The authentication password for the new User. Plaintext string,
      * will be hashed by the API.
      */
     #[Assert\NotBlank()]
