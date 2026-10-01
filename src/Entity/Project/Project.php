@@ -157,7 +157,7 @@ class Project implements UserOwnedInterface, AccountingOwnerInterface, Localized
     /**
      * @var Collection<int, Collaboration>
      */
-    #[ORM\OneToMany(targetEntity: Collaboration::class, mappedBy: 'project')]
+    #[ORM\OneToMany(targetEntity: Collaboration::class, mappedBy: 'project', cascade: ['persist'])]
     private Collection $collaborations;
 
     /**
@@ -559,6 +559,16 @@ class Project implements UserOwnedInterface, AccountingOwnerInterface, Localized
     public function getCollaborations(): Collection
     {
         return $this->collaborations;
+    }
+
+    /**
+     * @param Collection<int, Collaboration> $collaborations
+     */
+    public function setCollaborations(Collection $collaborations): static
+    {
+        $this->collaborations = $collaborations;
+
+        return $this;
     }
 
     public function addCollaboration(Collaboration $collaboration): static
