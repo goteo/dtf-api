@@ -28,6 +28,29 @@ class ProjectsPump implements PumpInterface
     use LocalizedPumpTrait;
     use TerritoryPumpTrait;
 
+    public const SELECTED_PROJECTS = [
+        'la-nuestra-despega',
+        'la-nuestra',
+        'un-netflix-para-el-99-decenas-de-creadores-y-cinea',
+        'iridia-vs-pegasus',
+        'impulsa-la-cooperativa-de-informacion-climatica',
+        'amb-memoria-drets-humans',
+        'ara-drets-humans',
+        'amb-memoria-drets-humans',
+        'quien-cuida-a-las-que-cuidan',
+        'con-vosotras-si-campana-de-financiacion-duque-de-a',
+        'top-manta-bcn',
+        'salvem-el-delta-del-llobregat',
+        'refugio-una-huida-para-sobrevivir',
+        'plokte',
+        'lanzamos-sonda-internacional-y-los-cinco-elementos',
+        'la-kacharreria',
+        'portal-de-ressenyes-sobre-pisos',
+        'indicat-de-llogaters-i-llogateres/',
+        'jornaleras',
+        'las-kellys'
+    ];
+
     public function __construct(
         private ProjectRepository $projectRepository,
         private PumpedUserRepository $userRepository,
@@ -46,7 +69,7 @@ class ProjectsPump implements PumpInterface
 
     public function pump(mixed $record, array $context): void
     {
-        if (empty($record['name'])) {
+        if (empty($record['name']) || !in_array($record['id'], self::SELECTED_PROJECTS)) {
             return;
         }
 

@@ -85,6 +85,10 @@ class InvestsPump implements PumpInterface
 
     public function pump(mixed $record, array $context): void
     {
+        if (!in_array($record['project'], ProjectsPump::SELECTED_PROJECTS)) {
+            return;
+        }
+
         if (!$record['user'] || empty($record['user'])) {
             return;
         }
@@ -260,7 +264,7 @@ class InvestsPump implements PumpInterface
         $originId = $origin->getId();
         $projectId = $target->getId();
 
-        $cacheKey = $projectId.'-'.$originId;
+        $cacheKey = $projectId . '-' . $originId;
 
         if (isset($this->supportCache[$cacheKey])) {
             return $this->supportRepository->find($this->supportCache[$cacheKey]);

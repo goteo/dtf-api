@@ -75,9 +75,10 @@ class UsersPump implements PumpInterface
 
     private function processUser(User $user, array $record, array $context): User
     {
-        $user->setHandle($this->buildHandle($record));
+        $handle = hash('sha256', $record['email']);
+        $user->setHandle($handle);
         $user->setPassword($record['password'] ?? '');
-        $user->setEmail($record['email']);
+        $user->setEmail(\sprintf('%s@goteo.org', $handle));
         $user->setEmailConfirmed(false);
         $user->setActive(false);
         $user->setMigrated(true);
@@ -85,11 +86,11 @@ class UsersPump implements PumpInterface
         $user->setDateCreated($this->getDateCreated($record));
         $user->setDateUpdated(new \DateTime());
         $user->setType($this->getUserType($record));
-        $user->setLinks($this->getLinks($record));
+        // $user->setLinks($this->getLinks($record));
         $user->setTerritory($this->getTerritory($record));
-        $user->setDescription($record['about']);
+        // $user->setDescription($record['about']);
         $user->setRoles($this->getRoles($record, $context));
-        $user->setAvatar($this->getAvatar($record));
+        // $user->setAvatar($this->getAvatar($record));
 
         match ($user->getType()) {
             UserType::Individual => $user = $this->setUserPerson($record, $user),

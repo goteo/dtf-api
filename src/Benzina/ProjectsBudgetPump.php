@@ -48,6 +48,10 @@ class ProjectsBudgetPump implements PumpInterface
 
     public function pump(mixed $record, array $context): void
     {
+        if (!in_array($record['project'], ProjectsPump::SELECTED_PROJECTS)) {
+            return;
+        }
+
         if (empty($record['cost']) || empty($record['amount'])) {
             return;
         }
