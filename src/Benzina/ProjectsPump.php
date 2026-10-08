@@ -27,6 +27,7 @@ class ProjectsPump implements PumpInterface
     use ProjectsPumpTrait;
     use LocalizedPumpTrait;
     use TerritoryPumpTrait;
+    use CategorizationPumpTrait;
 
     public const SELECTED_PROJECTS = [
         'la-nuestra-despega',
@@ -128,6 +129,11 @@ class ProjectsPump implements PumpInterface
         $project->setDescAbout($record['about']);
         $project->setDescGoal($record['motivation']);
         $project->setDescTeam($record['related']);
+
+        $themes = $this->getProjectThemes($record, $context);
+        foreach ($themes as $theme) {
+            $project->addTheme($theme);
+        }
 
         $this->setPreventFlushAndClear(true);
         $this->persist($project, $context);
@@ -429,5 +435,24 @@ class ProjectsPump implements PumpInterface
         }
 
         return $collaborations;
+    }
+
+    private function getProjectThemes(array $record, array $context): array
+    {
+        $scQuery = $this->getDbConnection($context)->prepare(
+            'SELECT * FROM `social_commitment` sc WHERE sc.id = :scId'
+        );
+
+        $scQuery->execute(['scId' => $record['social_commitment']]);
+        $socialCommitment = $scQuery->fetch();
+
+        $catsQuery = $this->getDbConnection($context)->prepare(
+            'SELECT * FROM `category` c INNER JOIN `project_category` pc ON c.id = pc.category WHERE pc.project = :project'
+        );
+
+        $catsQuery->execute(['project' => $record['id']]);
+        $categories = $catsQuery->fetchAll();
+
+        return $this->mapOldCategoriesToThemes($socialCommitment['name'] ?? '', $categories);
     }
 }

@@ -28,6 +28,8 @@ framework:
             headers:
                 'User-Agent': 'DTF Goteo v4 API'
 
+    trusted_proxies: '%env(APP_TRUSTED_PROXIES)%'
+
 when@test:
     framework:
         test: true
