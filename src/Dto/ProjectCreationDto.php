@@ -37,7 +37,7 @@ class ProjectCreationDto
      * @var CategoryApiResource[]
      */
     #[Assert\NotBlank()]
-    #[Assert\Count(min: 1, max: 2)]
+    #[Assert\Count(exactly: 1)]
     #[API\ApiProperty(writableLink: false, openapiContext: self::CATEGORIES_OPENAPI_CONTEXT)]
     public array $categories;
 
@@ -46,7 +46,7 @@ class ProjectCreationDto
      *
      * @var ThemeApiResource[]
      */
-    #[Assert\Count(max: 1)]
+    #[Assert\Count(min: 1, max: 2)]
     #[API\ApiProperty(writableLink: false, openapiContext: self::THEMES_OPENAPI_CONTEXT)]
     public array $themes;
 
