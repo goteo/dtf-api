@@ -179,6 +179,16 @@ class ProjectApiResource
     public string $descTeam;
 
     /**
+     * Rich-text (markdown allowed) about knowledge, tools and resources that will remain in the commons.
+     */
+    public string $descKnowledge;
+
+    /**
+     * Rich-text (markdown allowed) about how does the project reduce dependence on proprietary platforms.
+     */
+    public string $descInfrastructure;
+
+    /**
      * Extracted embedding data from the Project's video.
      */
     #[API\ApiProperty(writable: false)]
