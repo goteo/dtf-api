@@ -1,10 +1,14 @@
 knpu_oauth2_client:
     clients:
         # configure your clients as described here: https://github.com/knpuniversity/oauth2-client-bundle#configuration
-        google:
-            type: google
-            client_id: "%env(GOOGLE_OAUTH_ID)%"
-            client_secret: "%env(GOOGLE_OAUTH_SECRET)%"
+        rauthy_dtf:
+            type: generic
+            provider_class: App\OAuth2\Client\RauthyProvider
+            provider_options:
+              url: https://login.democratictech.fund
+            client_class: KnpU\OAuth2ClientBundle\Client\OAuth2PKCEClient
+            client_id: "%env(RAUTHYDTF_OAUTH_ID)%"
+            client_secret: "%env(RAUTHYDTF_OAUTH_SECRET)%"
             redirect_route: oauth_providers_callback
             redirect_params:
-                provider: google
+              provider: rauthy_dtf
