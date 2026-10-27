@@ -264,7 +264,7 @@ class InvestsPump implements PumpInterface
         $originId = $origin->getId();
         $projectId = $target->getId();
 
-        $cacheKey = $projectId . '-' . $originId;
+        $cacheKey = $projectId.'-'.$originId;
 
         if (isset($this->supportCache[$cacheKey])) {
             return $this->supportRepository->find($this->supportCache[$cacheKey]);

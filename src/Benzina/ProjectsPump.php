@@ -49,7 +49,7 @@ class ProjectsPump implements PumpInterface
         'portal-de-ressenyes-sobre-pisos',
         'indicat-de-llogaters-i-llogateres/',
         'jornaleras',
-        'las-kellys'
+        'las-kellys',
     ];
 
     public function __construct(
