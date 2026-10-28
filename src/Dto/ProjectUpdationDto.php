@@ -88,6 +88,18 @@ class ProjectUpdationDto
     public string $descTeam;
 
     /**
+     * Rich-text (markdown allowed) about knowledge, tools and resources that will remain in the commons.
+     */
+    #[Assert\Length(min: 20)]
+    public string $descKnowledge;
+
+    /**
+     * Rich-text (markdown allowed) about how does the project reduce dependence on proprietary platforms.
+     */
+    #[Assert\Length(min: 20)]
+    public string $descInfrastructure;
+
+    /**
      * On `minimum`, Project will campaign until the minimum deadline.\
      * On `optimum`, Project will campaing until the minimum deadline,
      * and then until the optimum deadline if it did raise the minimum.

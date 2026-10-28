@@ -182,6 +182,12 @@ class Project implements UserOwnedInterface, AccountingOwnerInterface, Localized
     #[ORM\ManyToMany(targetEntity: Theme::class, cascade: ['persist'])]
     private Collection $themes;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $descKnowledge = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $descInfrastructure = null;
+
     public function __construct()
     {
         $this->accounting = Accounting::of($this);
@@ -680,6 +686,30 @@ class Project implements UserOwnedInterface, AccountingOwnerInterface, Localized
     public function removeTheme(Theme $theme): static
     {
         $this->themes->removeElement($theme);
+
+        return $this;
+    }
+
+    public function getDescKnowledge(): ?string
+    {
+        return $this->descKnowledge;
+    }
+
+    public function setDescKnowledge(?string $descKnowledge): static
+    {
+        $this->descKnowledge = $descKnowledge;
+
+        return $this;
+    }
+
+    public function getDescInfrastructure(): ?string
+    {
+        return $this->descInfrastructure;
+    }
+
+    public function setDescInfrastructure(?string $descInfrastructure): static
+    {
+        $this->descInfrastructure = $descInfrastructure;
 
         return $this;
     }
