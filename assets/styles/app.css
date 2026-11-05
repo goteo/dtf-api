@@ -4,16 +4,21 @@
 @source not "../../public";
 
 @theme {
-    /* Light Theme (default) */
-    --color-primary: #59E9D3;
-    --color-secondary: #462949;
-    --color-tertiary: #E94668;
-    --color-content: #575757;
+    /* DTF palette (dtf-web src/styles/global.css); tokens unused by templates keep upstream values */
+    --color-primary: #cf2626;
+    --color-secondary: #2c1212;
+    --color-tertiary: #cf2626;
+    --color-content: #2c1212;
+
+    --color-page: #f3e7d0;
+    --color-on-primary: #ffffff;
+    --color-inverse: #2c1212;
+    --color-on-inverse: #f3e7d0;
 
     /* Extended color tokens for components */
-    --color-white: #FBFBFB;
-    --color-black: #3D3D3D;
-    --color-grey: #F3F3EF;
+    --color-white: #ffffff;
+    --color-black: #2c1212;
+    --color-grey: #d8cbbb;
     --color-purple-soft: #FAF9FF;
     --color-purple-medium: #F6F5FF;
 
