@@ -17,8 +17,8 @@ login:
 
 consent:
   title: Authorize
-  description: The application %app% would like permission to access your Goteo account.
-  tip: You should only give access to your Goteo account to third parties you trust.
+  description: The application %app% would like permission to access your account.
+  tip: You should only give access to your account to applications you trust.
   consent: Yes, allow access
   submit: Continue
 
